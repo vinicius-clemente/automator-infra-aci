@@ -1,0 +1,8 @@
+# Exemplo de arquivo para DESASSOCIAÇÃO de portas estáticas de EPGs
+# Formato: tenant,app_profile,epg,tdn
+# tdn: caminho da porta no ACI (ex: topology/pod-1/paths-101/pathep-[eth1/24])
+# Linhas começando com # são ignoradas
+
+TESTE,AP_DADOS,EPG_CLIENTES,topology/pod-1/paths-101/pathep-[eth1/24]
+TESTE,AP_DADOS,EPG_SERVIDORES,topology/pod-1/paths-101/pathep-[eth1/25]
+OUTRO-TENANT,AP_GERENCIA,EPG_GER,topology/pod-1/paths-102/pathep-[eth1/30]

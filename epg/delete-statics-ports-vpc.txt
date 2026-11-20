@@ -1,0 +1,9 @@
+# Arquivo para DESASSOCIAÇÃO de portas estáticas VPC de EPGs
+# Formato: tenant,app_profile,epg,tdn (uma por linha)
+# tdn (VPC): topology/pod-X/protpaths-AAA-BBB/pathep-[NOME_DO_POLICY_GROUP_VPC]
+# AAA/BBB = IDs das duas leafs do VPC (ex: protpaths-255-226)
+# pathep = nome do VPC Interface Policy Group (ex: VPC-JASONX1)
+# Linhas começando com # são ignoradas
+
+JASONX1,AP_DADOS,TESTE10-EPG,topology/pod-1/protpaths-225-226/pathep-[VPC-JASONX1]
+JASONX1,AP_DADOS,TESTE11-EPG,topology/pod-1/protpaths-225-226/pathep-[VPC-JASONX1]

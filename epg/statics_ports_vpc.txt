@@ -1,0 +1,12 @@
+# Exemplo de arquivo para ASSOCIAÇÃO de portas estáticas VPC a EPGs
+# Formato: tenant,app_profile,epg,tdn,encap
+# tdn (VPC): topology/pod-X/protpaths-AAA-BBB/pathep-[NOME_DO_POLICY_GROUP_VPC]
+#            AAA/BBB = IDs das duas leafs do VPC (ex: protpaths-101-102)
+#            pathep  = nome do VPC Interface Policy Group (ex: VPC_DADOS)
+# encap: VLAN (ex: vlan-100, vlan-200 ou any)
+# Linhas começando com # são ignoradas
+
+TESTE,AP_DADOS,EPG_CLIENTES,topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS],vlan-100
+TESTE,AP_DADOS,EPG_SERVIDORES,topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS],vlan-200
+OUTRO-TENANT,AP_GERENCIA,EPG_GER,topology/pod-1/protpaths-101-102/pathep-[VPC_GER],any
+TERCEIRO,AP_DADOS,EPG_WEB,topology/pod-2/protpaths-105-106/pathep-[VPC_WEB],vlan-300

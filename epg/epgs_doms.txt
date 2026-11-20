@@ -1,0 +1,13 @@
+# Exemplo de arquivo para ASSOCIAÇÃO de EPGs a Physical Domains
+# Formato: tenant,app_profile,epg,phys_domain
+# Linhas começando com # são ignoradas
+
+# Exemplo 1: Associar EPG a domínio físico no tenant TESTE
+TESTE,AP_DADOS,EPG_CLIENTES,DOM_FISICO_01
+TESTE,AP_DADOS,EPG_SERVIDORES,DOM_FISICO_01
+
+# Exemplo 2: EPGs em tenants diferentes
+OUTRO-TENANT,AP_GERENCIA,EPG_GER,DOM_GERENCIA
+TERCEIRO,AP_DADOS,EPG_WEB,DOM_WEB
+TERCEIRO,AP_DADOS,EPG_APP,DOM_APP
+TERCEIRO,AP_DADOS,EPG_DB,DOM_DB

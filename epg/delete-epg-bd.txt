@@ -1,0 +1,16 @@
+# Exemplo de arquivo para EXCLUSÃO de EPGs e/ou BDs
+# Formato: tenant,app_profile,epg[,bd]
+# A coluna bd é opcional. Se omitir, apenas o EPG será deletado.
+# Se quiser deletar o BD também, informe na coluna 4 e use --deletar-bd
+# Linhas começando com # são ignoradas
+
+# Exemplo 1: Deletar apenas o EPG (sem deletar o BD)
+TESTE,AP_DADOS,EPG_CLIENTES
+TESTE,AP_DADOS,EPG_SERVIDORES
+
+# Exemplo 2: Deletar EPG e seu BD associado
+OUTRO-TENANT,AP_GERENCIA,EPG_GER,BD_GER
+
+# Exemplo 3: Vários EPGs no mesmo AP
+TERCEIRO,AP_DADOS,EPG_WEB,BD_WEB
+TERCEIRO,AP_DADOS,EPG_APP,BD_APP

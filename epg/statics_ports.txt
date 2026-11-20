@@ -1,0 +1,10 @@
+# Exemplo de arquivo para ASSOCIAÇÃO de portas estáticas a EPGs
+# Formato: tenant,app_profile,epg,tdn,encap
+# tdn: caminho da porta no ACI (ex: topology/pod-1/paths-101/pathep-[eth1/24])
+# encap: VLAN (ex: vlan-100, vlan-200 ou any)
+# Linhas começando com # são ignoradas
+
+TESTE,AP_DADOS,EPG_CLIENTES,topology/pod-1/paths-101/pathep-[eth1/24],vlan-100
+TESTE,AP_DADOS,EPG_SERVIDORES,topology/pod-1/paths-101/pathep-[eth1/25],vlan-200
+OUTRO-TENANT,AP_GERENCIA,EPG_GER,topology/pod-1/paths-102/pathep-[eth1/30],any
+TERCEIRO,AP_DADOS,EPG_WEB,topology/pod-2/paths-101/pathep-[eth1/10],vlan-300

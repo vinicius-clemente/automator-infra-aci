@@ -1,0 +1,17 @@
+# Exemplo de arquivo para CRIAÇÃO de Tenant, VRF e Application Profile
+# Formato: tenant,vrf,ap1,ap2
+# A coluna AP é opcional. Se omitir, nenhum AP será criado.
+# Se quiser os padrões AP_DADOS e AP_GERENCIA, informe nas colunas 3 e 4.
+# Linhas começando com # são ignoradas
+
+# Exemplo 1: Tenant com VRF e ambos os APs padrão
+TESTE,VRF_DCS_TESTE,AP_DADOS,AP_GERENCIA
+
+# Exemplo 2: Tenant com VRF e apenas um AP
+OUTRO-TENANT,VRF_DEV,AP_DADOS
+
+# Exemplo 3: Tenant com VRF e nenhum AP (só cria Tenant e VRF)
+TERCEIRO,VRF_PROD
+
+# Exemplo 4: Tenant com VRF e AP customizado
+QUARTO,VRF_TESTE,AP_CUSTOM01

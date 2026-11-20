@@ -1,0 +1,7 @@
+# Exemplo de arquivo para EXCLUSÃO de Tenant e VRF
+# Formato: tenant,vrf (a coluna vrf é opcional; se omitir, deleta só o tenant)
+# Linhas começando com # são ignoradas
+
+TESTE,VRF_DCS_TESTE
+OUTRO-TENANT,VRF_DEV
+TERCEIRO

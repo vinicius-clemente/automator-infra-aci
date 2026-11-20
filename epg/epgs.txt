@@ -1,0 +1,15 @@
+# Exemplo de arquivo para CRIAÇÃO de EPGs associados a BDs
+# Formato: tenant,app_profile,epg,bd
+# Linhas começando com # são ignoradas
+
+# Exemplo 1: EPG com BD no tenant TESTE, AP_DADOS
+TESTE,AP_DADOS,EPG_CLIENTES,BD_CLIENTES
+TESTE,AP_DADOS,EPG_SERVIDORES,BD_SERVIDORES
+
+# Exemplo 2: EPG com BD no tenant OUTRO-TENANT, AP_GERENCIA
+OUTRO-TENANT,AP_GERENCIA,EPG_GER,BD_GER
+
+# Exemplo 3: Vários EPGs no mesmo AP e BD diferente
+TERCEIRO,AP_DADOS,EPG_WEB,BD_WEB
+TERCEIRO,AP_DADOS,EPG_APP,BD_APP
+TERCEIRO,AP_DADOS,EPG_DB,BD_DB
