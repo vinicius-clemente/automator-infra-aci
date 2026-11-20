@@ -41,8 +41,8 @@ tenant,vrf,bd
 Exemplo (`bds.txt` para criação):
 
 ```
-HUAWEI,VRF_DCS_HUAWEI,TESTE-BD10
-HUAWEI,VRF_DCS_HUAWEI,TESTE-BD11
+TENANT_EXEMPLO,VRF_DCS_TENANT_EXEMPLO,TESTE-BD10
+TENANT_EXEMPLO,VRF_DCS_TENANT_EXEMPLO,TESTE-BD11
 OUTRO-TENANT,VRF_DEV,TESTE-BD12
 TERCEIRO,VRF_PROD,BD_A01
 ```
@@ -50,7 +50,7 @@ TERCEIRO,VRF_PROD,BD_A01
 Exemplo (`delete-bds.txt` para exclusão):
 
 ```
-HUAWEI,VRF_DCS_HUAWEI,TESTE-BD10
+TENANT_EXEMPLO,VRF_DCS_TENANT_EXEMPLO,TESTE-BD10
 OUTRO-TENANT,VRF_DEV,TESTE-BD12
 ```
 
@@ -89,12 +89,12 @@ Isso significa que se você quer criar/deletar BDs específicos, use `--tenant` 
 
 **Criar 1 BD único:**
 ```bash
-python3 bd/create-bds-prod.py --tenant HUAWEI --vrf VRF_DCS_HUAWEI --bd TESTE-BD10 -v
+python3 bd/create-bds-prod.py --tenant TENANT_EXEMPLO --vrf VRF_DCS_TENANT_EXEMPLO --bd TESTE-BD10 -v
 ```
 
 **Criar vários BDs (mesmo tenant e mesma VRF):**
 ```bash
-python3 bd/create-bds-prod.py --tenant HUAWEI --vrf VRF_DCS_HUAWEI --bd TESTE-BD10 --bd TESTE-BD11 --bd TESTE-BD12 -v
+python3 bd/create-bds-prod.py --tenant TENANT_EXEMPLO --vrf VRF_DCS_TENANT_EXEMPLO --bd TESTE-BD10 --bd TESTE-BD11 --bd TESTE-BD12 -v
 ```
 
 Parâmetros:
@@ -116,12 +116,12 @@ Cada linha do arquivo define seu próprio tenant, VRF e BD.
 
 **Excluir 1 BD único:**
 ```bash
-python3 bd/delete-bds-prod.py --tenant HUAWEI --bd TESTE-BD10 -v
+python3 bd/delete-bds-prod.py --tenant TENANT_EXEMPLO --bd TESTE-BD10 -v
 ```
 
 **Excluir vários BDs (mesmo tenant):**
 ```bash
-python3 bd/delete-bds-prod.py --tenant HUAWEI --bd TESTE-BD10 --bd TESTE-BD11 --bd TESTE-BD12 -v
+python3 bd/delete-bds-prod.py --tenant TENANT_EXEMPLO --bd TESTE-BD10 --bd TESTE-BD11 --bd TESTE-BD12 -v
 ```
 
 ### 3.4 Excluir vários BDs via arquivo
@@ -182,7 +182,7 @@ python3 bd/delete-bds-prod.py -v --log-file deletar_dev.log
 ### Cenário C: Criar um BD único rápido
 
 ```bash
-python3 bd/create-bds-prod.py --tenant HUAWEI --vrf VRF_DCS_HUAWEI --bd BD_NOVO -v
+python3 bd/create-bds-prod.py --tenant TENANT_EXEMPLO --vrf VRF_DCS_TENANT_EXEMPLO --bd BD_NOVO -v
 ```
 
 ---
@@ -199,21 +199,21 @@ APIC   : https://172.30.104.5
 Usuário: 80689851
 Qtd BD : 4
 ----------------------------------------------------------------------
-🔎 Verificando 'HUAWEI/TESTE-BD10' -> não encontrado
-📡 Criando 'HUAWEI/TESTE-BD10' (VRF 'VRF_DCS_HUAWEI')... Status: 200
-✅ BD 'HUAWEI/TESTE-BD10' criado com sucesso.
-✅ 'HUAWEI/TESTE-BD10' (VRF 'VRF_DCS_HUAWEI') criado com sucesso.
-🔎 Verificando 'HUAWEI/TESTE-BD11' -> encontrado
-⚠️  'HUAWEI/TESTE-BD11' já existe. Pulando.
+🔎 Verificando 'TENANT_EXEMPLO/TESTE-BD10' -> não encontrado
+📡 Criando 'TENANT_EXEMPLO/TESTE-BD10' (VRF 'VRF_DCS_TENANT_EXEMPLO')... Status: 200
+✅ BD 'TENANT_EXEMPLO/TESTE-BD10' criado com sucesso.
+✅ 'TENANT_EXEMPLO/TESTE-BD10' (VRF 'VRF_DCS_TENANT_EXEMPLO') criado com sucesso.
+🔎 Verificando 'TENANT_EXEMPLO/TESTE-BD11' -> encontrado
+⚠️  'TENANT_EXEMPLO/TESTE-BD11' já existe. Pulando.
 ----------------------------------------------------------------------
 RESUMO
 ----------------------------------------------------------------------
 Tenants processados: 1
-  📦 HUAWEI
+  📦 TENANT_EXEMPLO
 Criados : 1
-  ✅ HUAWEI/TESTE-BD10
+  ✅ TENANT_EXEMPLO/TESTE-BD10
 Pulados : 1 (já existiam)
-  ⚠️  HUAWEI/TESTE-BD11
+  ⚠️  TENANT_EXEMPLO/TESTE-BD11
 Falhas  : 0
 ======================================================================
 ```

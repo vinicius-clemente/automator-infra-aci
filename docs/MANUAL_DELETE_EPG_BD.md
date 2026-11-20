@@ -24,8 +24,8 @@ tenant,app_profile,epg[,bd]
 Exemplo:
 
 ```
-HUAWEI,AP_DADOS,EPG_CLIENTES
-HUAWEI,AP_DADOS,EPG_SERVIDORES,BD_SERVIDORES
+TENANT_EXEMPLO,AP_DADOS,EPG_CLIENTES
+TENANT_EXEMPLO,AP_DADOS,EPG_SERVIDORES,BD_SERVIDORES
 OUTRO-TENANT,AP_GERENCIA,EPG_GER,BD_GER
 ```
 
@@ -41,22 +41,22 @@ python3 epg/delete-epg-bd-prod.py -v --log-file deletar.log
 
 **Deletar apenas o EPG (sem deletar BD):**
 ```powershell
-python3 epg/delete-epg-bd-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES -v
+python3 epg/delete-epg-bd-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES -v
 ```
 
 **Deletar vários EPGs (mesmo tenant/AP):**
 ```powershell
-python3 epg/delete-epg-bd-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1 --epg EPG2 -v
+python3 epg/delete-epg-bd-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG1 --epg EPG2 -v
 ```
 
 **Deletar EPG e o BD associado:**
 ```powershell
-python3 epg/delete-epg-bd-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --bd BD_CLIENTES --deletar-bd -v
+python3 epg/delete-epg-bd-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --bd BD_CLIENTES --deletar-bd -v
 ```
 
 **Deletar vários EPGs e seus BDs:**
 ```powershell
-python3 epg/delete-epg-bd-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1 --epg EPG2 --bd BD1 --bd BD2 --deletar-bd -v
+python3 epg/delete-epg-bd-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG1 --epg EPG2 --bd BD1 --bd BD2 --deletar-bd -v
 ```
 
 ## 4. Parâmetros

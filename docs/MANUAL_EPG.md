@@ -53,8 +53,8 @@ As colunas são:
 Exemplo (`epgs.txt`):
 
 ```
-HUAWEI,AP_DADOS,EPG_CLIENTES,BD_CLIENTES
-HUAWEI,AP_DADOS,EPG_SERVIDORES,BD_SERVIDORES
+TENANT_EXEMPLO,AP_DADOS,EPG_CLIENTES,BD_CLIENTES
+TENANT_EXEMPLO,AP_DADOS,EPG_SERVIDORES,BD_SERVIDORES
 OUTRO-TENANT,AP_GERENCIA,EPG_GER,BD_GER
 TERCEIRO,AP_DADOS,EPG_WEB,BD_WEB
 TERCEIRO,AP_DADOS,EPG_APP,BD_APP
@@ -90,7 +90,7 @@ Os scripts aceitam tanto argumentos na linha de comando quanto arquivo de entrad
 ### 3.1 Criar um EPG único (modo simples)
 
 ```bash
-python3 epg/create-epg-to-bd-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --bd BD_CLIENTES -v
+python3 epg/create-epg-to-bd-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --bd BD_CLIENTES -v
 ```
 
 Parâmetros:
@@ -118,7 +118,7 @@ Cada linha do arquivo define seu próprio tenant, AP, EPG e BD.
 Quando todos os EPGs são do mesmo tenant e mesmo AP:
 
 ```bash
-python3 epg/create-epgs-to-bds-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1 --epg EPG2 --epg EPG3 --bd BD1 --bd BD2 --bd BD3 -v
+python3 epg/create-epgs-to-bds-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG1 --epg EPG2 --epg EPG3 --bd BD1 --bd BD2 --bd BD3 -v
 ```
 
 **Regras:**
@@ -132,7 +132,7 @@ python3 epg/create-epgs-to-bds-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1 
 ### Cenário A: Criar um EPG único
 
 ```bash
-python3 epg/create-epg-to-bd-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --bd BD_CLIENTES -v
+python3 epg/create-epg-to-bd-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --bd BD_CLIENTES -v
 ```
 
 ### Cenário B: Criar vários EPGs com BDs diferentes
@@ -172,25 +172,25 @@ APIC   : https://172.30.104.5
 Usuário: 80689851
 Qtd EPG: 3
 ----------------------------------------------------------------------
-🔎 Verificando Tenant 'HUAWEI' -> encontrado
-🔎 Verificando AP 'HUAWEI/AP_DADOS' -> encontrado
-🔎 Verificando BD 'HUAWEI/BD_CLIENTES' -> encontrado
-🔎 Verificando EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' -> não encontrado
-📦 Criando EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' associado ao BD 'BD_CLIENTES'... Status: 200
-✅ EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' criado com sucesso e associado ao BD 'BD_CLIENTES'.
-🔎 Verificando EPG 'HUAWEI/AP_DADOS/EPG_SERVIDORES' -> já encontrado
-⚠️  EPG 'HUAWEI/AP_DADOS/EPG_SERVIDORES' já existe. Pulando.
+🔎 Verificando Tenant 'TENANT_EXEMPLO' -> encontrado
+🔎 Verificando AP 'TENANT_EXEMPLO/AP_DADOS' -> encontrado
+🔎 Verificando BD 'TENANT_EXEMPLO/BD_CLIENTES' -> encontrado
+🔎 Verificando EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' -> não encontrado
+📦 Criando EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' associado ao BD 'BD_CLIENTES'... Status: 200
+✅ EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' criado com sucesso e associado ao BD 'BD_CLIENTES'.
+🔎 Verificando EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES' -> já encontrado
+⚠️  EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES' já existe. Pulando.
 ----------------------------------------------------------------------
 RESUMO
 ----------------------------------------------------------------------
 Tenants processados: 1
-  📦 HUAWEI
+  📦 TENANT_EXEMPLO
 APs processados: 1
-  📁 HUAWEI/AP_DADOS
+  📁 TENANT_EXEMPLO/AP_DADOS
 EPGs criados : 1
-  ✅ HUAWEI/AP_DADOS/EPG_CLIENTES (BD: BD_CLIENTES)
+  ✅ TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES (BD: BD_CLIENTES)
 EPGs pulados : 1
-  ⚠️  HUAWEI/AP_DADOS/EPG_SERVIDORES
+  ⚠️  TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES
 Falhas       : 0
 ======================================================================
 ```

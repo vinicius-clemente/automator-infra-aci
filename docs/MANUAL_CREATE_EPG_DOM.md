@@ -54,8 +54,8 @@ As colunas são:
 Exemplo (`epgs_doms.txt`):
 
 ```
-HUAWEI,AP_DADOS,EPG_CLIENTES,DOM_FISICO_01
-HUAWEI,AP_DADOS,EPG_SERVIDORES,DOM_FISICO_01
+TENANT_EXEMPLO,AP_DADOS,EPG_CLIENTES,DOM_FISICO_01
+TENANT_EXEMPLO,AP_DADOS,EPG_SERVIDORES,DOM_FISICO_01
 OUTRO-TENANT,AP_GERENCIA,EPG_GER,DOM_GERENCIA
 TERCEIRO,AP_DADOS,EPG_WEB,DOM_WEB
 TERCEIRO,AP_DADOS,EPG_APP,DOM_APP
@@ -64,7 +64,7 @@ TERCEIRO,AP_DADOS,EPG_APP,DOM_APP
 Exemplo (`delete-epgs-doms.txt`):
 
 ```
-HUAWEI,AP_DADOS,EPG_CLIENTES,DOM_FISICO_01
+TENANT_EXEMPLO,AP_DADOS,EPG_CLIENTES,DOM_FISICO_01
 OUTRO-TENANT,AP_GERENCIA,EPG_GER,DOM_GERENCIA
 ```
 
@@ -97,7 +97,7 @@ Os scripts aceitam tanto argumentos na linha de comando quanto arquivo de entrad
 ### 3.1 Associar um EPG a um Physical Domain (modo simples)
 
 ```bash
-python3 epg/create-epg-to-dom-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --dom DOM_FISICO_01 -v
+python3 epg/create-epg-to-dom-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --dom DOM_FISICO_01 -v
 ```
 
 Parâmetros:
@@ -125,7 +125,7 @@ Cada linha do arquivo define seu próprio tenant, AP, EPG e Physical Domain.
 Quando todos os EPGs são do mesmo tenant e mesmo AP:
 
 ```bash
-python3 epg/create-epgs-to-doms-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1 --epg EPG2 --epg EPG3 --dom DOM1 --dom DOM2 --dom DOM3 -v
+python3 epg/create-epgs-to-doms-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG1 --epg EPG2 --epg EPG3 --dom DOM1 --dom DOM2 --dom DOM3 -v
 ```
 
 **Regras:**
@@ -137,7 +137,7 @@ python3 epg/create-epgs-to-doms-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1
 ### 3.4 Desassociar um EPG de um Physical Domain (modo simples)
 
 ```bash
-python3 epg/delete-epg-from-dom-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --dom DOM_FISICO_01 -v
+python3 epg/delete-epg-from-dom-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --dom DOM_FISICO_01 -v
 ```
 
 ---
@@ -153,7 +153,7 @@ python3 epg/delete-epg-from-dom-prod.py --arquivo epg/delete-epgs-doms.txt -v --
 ### 3.6 Desassociar vários EPGs via linha de comando (modo simples)
 
 ```bash
-python3 epg/delete-epg-from-dom-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1 --epg EPG2 --dom DOM1 --dom DOM2 -v
+python3 epg/delete-epg-from-dom-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG1 --epg EPG2 --dom DOM1 --dom DOM2 -v
 ```
 
 ---
@@ -163,7 +163,7 @@ python3 epg/delete-epg-from-dom-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1
 ### Cenário A: Associar um EPG único a um Physical Domain
 
 ```bash
-python3 epg/create-epg-to-dom-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --dom DOM_FISICO_01 -v
+python3 epg/create-epg-to-dom-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --dom DOM_FISICO_01 -v
 ```
 
 ### Cenário B: Associar vários EPGs com Physical Domains diferentes
@@ -186,7 +186,7 @@ python3 epg/create-epgs-to-doms-prod.py --arquivo epg/epgs_doms.txt -v --log-fil
 ### Cenário C: Desassociar um EPG de um Physical Domain
 
 ```bash
-python3 epg/delete-epg-from-dom-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --dom DOM_FISICO_01 -v
+python3 epg/delete-epg-from-dom-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --dom DOM_FISICO_01 -v
 ```
 
 ### Cenário D: Desassociar vários EPGs de Physical Domains
@@ -218,28 +218,28 @@ APIC   : https://172.30.104.5
 Usuário: 80689851
 Qtd associações: 3
 ----------------------------------------------------------------------
-🔎 Verificando Tenant 'HUAWEI' -> encontrado
-🔎 Verificando AP 'HUAWEI/AP_DADOS' -> encontrado
+🔎 Verificando Tenant 'TENANT_EXEMPLO' -> encontrado
+🔎 Verificando AP 'TENANT_EXEMPLO/AP_DADOS' -> encontrado
 🔎 Verificando Physical Domain 'DOM_FISICO_01' -> encontrado
-🔎 Verificando EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' -> encontrado
-🔎 Verificando associação EPG/Dom 'HUAWEI/AP_DADOS/EPG_CLIENTES <-> DOM_FISICO_01' -> não encontrado
-🔗 Associando EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' ao Physical Domain 'DOM_FISICO_01'... Status: 200
-✅ EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' associado ao Physical Domain 'DOM_FISICO_01' com sucesso.
-🔎 Verificando associação EPG/Dom 'HUAWEI/AP_DADOS/EPG_SERVIDORES <-> DOM_FISICO_01' -> encontrado
-⚠️  EPG 'HUAWEI/AP_DADOS/EPG_SERVIDORES' já está associado ao Physical Domain 'DOM_FISICO_01'. Pulando.
+🔎 Verificando EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' -> encontrado
+🔎 Verificando associação EPG/Dom 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES <-> DOM_FISICO_01' -> não encontrado
+🔗 Associando EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' ao Physical Domain 'DOM_FISICO_01'... Status: 200
+✅ EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' associado ao Physical Domain 'DOM_FISICO_01' com sucesso.
+🔎 Verificando associação EPG/Dom 'TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES <-> DOM_FISICO_01' -> encontrado
+⚠️  EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES' já está associado ao Physical Domain 'DOM_FISICO_01'. Pulando.
 ----------------------------------------------------------------------
 RESUMO
 ----------------------------------------------------------------------
 Tenants processados: 1
-  📦 HUAWEI
+  📦 TENANT_EXEMPLO
 APs processados: 1
-  📁 HUAWEI/AP_DADOS
+  📁 TENANT_EXEMPLO/AP_DADOS
 Physical Domains processados: 1
   🌐 DOM_FISICO_01
 Associações criadas : 1
-  ✅ HUAWEI/AP_DADOS/EPG_CLIENTES <-> DOM_FISICO_01
+  ✅ TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES <-> DOM_FISICO_01
 Associações puladas : 1
-  ⚠️  HUAWEI/AP_DADOS/EPG_SERVIDORES <-> DOM_FISICO_01
+  ⚠️  TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES <-> DOM_FISICO_01
 Falhas              : 0
 ======================================================================
 ```
@@ -254,24 +254,24 @@ APIC   : https://172.30.104.5
 Usuário: 80689851
 Qtd itens: 2
 ----------------------------------------------------------------------
-🔎 Verificando associação EPG/Dom 'HUAWEI/AP_DADOS/EPG_CLIENTES <-> DOM_FISICO_01' -> encontrado
-🔗 Desassociando EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' do Physical Domain 'DOM_FISICO_01'... Status: 200
-✅ Associação EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' <-> Dom 'DOM_FISICO_01' removida com sucesso.
-🔎 Verificando associação EPG/Dom 'HUAWEI/AP_DADOS/EPG_SERVIDORES <-> DOM_FISICO_01' -> não encontrado
-⚠️  Associação 'HUAWEI/AP_DADOS/EPG_SERVIDORES' <-> 'DOM_FISICO_01' não existe. Pulando.
+🔎 Verificando associação EPG/Dom 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES <-> DOM_FISICO_01' -> encontrado
+🔗 Desassociando EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' do Physical Domain 'DOM_FISICO_01'... Status: 200
+✅ Associação EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' <-> Dom 'DOM_FISICO_01' removida com sucesso.
+🔎 Verificando associação EPG/Dom 'TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES <-> DOM_FISICO_01' -> não encontrado
+⚠️  Associação 'TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES' <-> 'DOM_FISICO_01' não existe. Pulando.
 ----------------------------------------------------------------------
 RESUMO
 ----------------------------------------------------------------------
 Tenants processados: 1
-  📦 HUAWEI
+  📦 TENANT_EXEMPLO
 APs processados: 1
-  📁 HUAWEI/AP_DADOS
+  📁 TENANT_EXEMPLO/AP_DADOS
 Physical Domains processados: 1
   🌐 DOM_FISICO_01
 Associações removidas : 1
-  🗑️  HUAWEI/AP_DADOS/EPG_CLIENTES <-> DOM_FISICO_01
+  🗑️  TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES <-> DOM_FISICO_01
 Associações puladas   : 1
-  ⚠️  HUAWEI/AP_DADOS/EPG_SERVIDORES <-> DOM_FISICO_01
+  ⚠️  TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES <-> DOM_FISICO_01
 Falhas                : 0
 ======================================================================
 ```

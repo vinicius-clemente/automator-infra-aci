@@ -52,7 +52,7 @@ Se omitir as colunas de AP, nenhum Application Profile será criado.
 Exemplo (`tenant-vrf.txt`):
 
 ```
-HUAWEI,VRF_DCS_HUAWEI,AP_DADOS,AP_GERENCIA
+TENANT_EXEMPLO,VRF_DCS_TENANT_EXEMPLO,AP_DADOS,AP_GERENCIA
 OUTRO-TENANT,VRF_DEV,AP_DADOS
 TERCEIRO,VRF_PROD
 QUARTO,VRF_TESTE,AP_CUSTOM01
@@ -78,7 +78,7 @@ tenant
 Exemplo (`delete-tenant-vrf.txt`):
 
 ```
-HUAWEI,VRF_DCS_HUAWEI
+TENANT_EXEMPLO,VRF_DCS_TENANT_EXEMPLO
 OUTRO-TENANT,VRF_DEV
 TERCEIRO
 ```
@@ -115,17 +115,17 @@ Todos os exemplos abaixo usam linha de comando direta (sem arquivo):
 
 **Criar Tenant + VRF (sem Application Profile):**
 ```bash
-python3 tenant/create-tenant-vrf-prod.py --tenant HUAWEI --vrf VRF_DCS_HUAWEI -v
+python3 tenant/create-tenant-vrf-prod.py --tenant TENANT_EXEMPLO --vrf VRF_DCS_TENANT_EXEMPLO -v
 ```
 
 **Criar Tenant + VRF + apenas 1 AP:**
 ```bash
-python3 tenant/create-tenant-vrf-prod.py --tenant HUAWEI --vrf VRF_DCS_HUAWEI --ap AP_DADOS -v
+python3 tenant/create-tenant-vrf-prod.py --tenant TENANT_EXEMPLO --vrf VRF_DCS_TENANT_EXEMPLO --ap AP_DADOS -v
 ```
 
 **Criar Tenant + VRF + 2 APs (padrão):**
 ```bash
-python3 tenant/create-tenant-vrf-prod.py --tenant HUAWEI --vrf VRF_DCS_HUAWEI --ap AP_DADOS --ap AP_GERENCIA -v
+python3 tenant/create-tenant-vrf-prod.py --tenant TENANT_EXEMPLO --vrf VRF_DCS_TENANT_EXEMPLO --ap AP_DADOS --ap AP_GERENCIA -v
 ```
 
 **Criar Tenant + VRF + AP com nome customizado:**
@@ -168,12 +168,12 @@ Todos os exemplos abaixo usam linha de comando direta (sem arquivo):
 
 **Deletar apenas o Tenant (sem especificar VRF):**
 ```bash
-python3 tenant/delete-tenant-vrf-prod.py --tenant HUAWEI -v
+python3 tenant/delete-tenant-vrf-prod.py --tenant TENANT_EXEMPLO -v
 ```
 
 **Deletar VRF específica + Tenant:**
 ```bash
-python3 tenant/delete-tenant-vrf-prod.py --tenant HUAWEI --vrf VRF_DCS_HUAWEI -v
+python3 tenant/delete-tenant-vrf-prod.py --tenant TENANT_EXEMPLO --vrf VRF_DCS_TENANT_EXEMPLO -v
 ```
 
 O que acontece na exclusão:
@@ -232,32 +232,32 @@ APIC   : https://172.30.104.5
 Usuário: 80689851
 Qtd itens: 2
 ----------------------------------------------------------------------
-🔎 Verificando Tenant 'HUAWEI' -> não encontrado
-🧱 Criando Tenant 'HUAWEI'... Status: 200
-✅ Tenant 'HUAWEI' criado com sucesso.
-🔎 Verificando VRF 'HUAWEI/VRF_DCS_HUAWEI' -> não encontrado
-🌐 Criando VRF 'HUAWEI/VRF_DCS_HUAWEI'... Status: 200
-✅ VRF 'HUAWEI/VRF_DCS_HUAWEI' criada com sucesso.
-🔎 Verificando AP 'HUAWEI/AP_DADOS' -> não encontrado
-📦 Criando AP 'HUAWEI/AP_DADOS'... Status: 200
-✅ AP 'HUAWEI/AP_DADOS' criado com sucesso.
-🔎 Verificando AP 'HUAWEI/AP_GERENCIA' -> não encontrado
-📦 Criando AP 'HUAWEI/AP_GERENCIA'... Status: 200
-✅ AP 'HUAWEI/AP_GERENCIA' criado com sucesso.
+🔎 Verificando Tenant 'TENANT_EXEMPLO' -> não encontrado
+🧱 Criando Tenant 'TENANT_EXEMPLO'... Status: 200
+✅ Tenant 'TENANT_EXEMPLO' criado com sucesso.
+🔎 Verificando VRF 'TENANT_EXEMPLO/VRF_DCS_TENANT_EXEMPLO' -> não encontrado
+🌐 Criando VRF 'TENANT_EXEMPLO/VRF_DCS_TENANT_EXEMPLO'... Status: 200
+✅ VRF 'TENANT_EXEMPLO/VRF_DCS_TENANT_EXEMPLO' criada com sucesso.
+🔎 Verificando AP 'TENANT_EXEMPLO/AP_DADOS' -> não encontrado
+📦 Criando AP 'TENANT_EXEMPLO/AP_DADOS'... Status: 200
+✅ AP 'TENANT_EXEMPLO/AP_DADOS' criado com sucesso.
+🔎 Verificando AP 'TENANT_EXEMPLO/AP_GERENCIA' -> não encontrado
+📦 Criando AP 'TENANT_EXEMPLO/AP_GERENCIA'... Status: 200
+✅ AP 'TENANT_EXEMPLO/AP_GERENCIA' criado com sucesso.
 ----------------------------------------------------------------------
 RESUMO
 ----------------------------------------------------------------------
 Tenants processados: 1
-  📦 HUAWEI
+  📦 TENANT_EXEMPLO
 Tenants criados : 1
-  ✅ HUAWEI
+  ✅ TENANT_EXEMPLO
 Tenants pulados : 0
 VRFs criadas    : 1
-  ✅ HUAWEI/VRF_DCS_HUAWEI
+  ✅ TENANT_EXEMPLO/VRF_DCS_TENANT_EXEMPLO
 VRFs puladas    : 0
 APs criados     : 2
-  ✅ HUAWEI/AP_DADOS
-  ✅ HUAWEI/AP_GERENCIA
+  ✅ TENANT_EXEMPLO/AP_DADOS
+  ✅ TENANT_EXEMPLO/AP_GERENCIA
 APs pulados     : 0
 Falhas          : 0
 ======================================================================
@@ -273,22 +273,22 @@ APIC   : https://172.30.104.5
 Usuário: 80689851
 Qtd itens: 2
 ----------------------------------------------------------------------
-🔎 Verificando VRF 'HUAWEI/VRF_DCS_HUAWEI' -> encontrado
-🗑️  Deletando VRF 'HUAWEI/VRF_DCS_HUAWEI'... Status: 200
-✅ VRF 'HUAWEI/VRF_DCS_HUAWEI' deletada com sucesso.
-🔎 Verificando Tenant 'HUAWEI' -> encontrado
-🗑️  Deletando Tenant 'HUAWEI'... Status: 200
-✅ Tenant 'HUAWEI' deletado com sucesso.
+🔎 Verificando VRF 'TENANT_EXEMPLO/VRF_DCS_TENANT_EXEMPLO' -> encontrado
+🗑️  Deletando VRF 'TENANT_EXEMPLO/VRF_DCS_TENANT_EXEMPLO'... Status: 200
+✅ VRF 'TENANT_EXEMPLO/VRF_DCS_TENANT_EXEMPLO' deletada com sucesso.
+🔎 Verificando Tenant 'TENANT_EXEMPLO' -> encontrado
+🗑️  Deletando Tenant 'TENANT_EXEMPLO'... Status: 200
+✅ Tenant 'TENANT_EXEMPLO' deletado com sucesso.
 ----------------------------------------------------------------------
 RESUMO
 ----------------------------------------------------------------------
 Tenants processados: 1
-  📦 HUAWEI
+  📦 TENANT_EXEMPLO
 VRFs deletadas   : 1
-  🗑️  HUAWEI/VRF_DCS_HUAWEI
+  🗑️  TENANT_EXEMPLO/VRF_DCS_TENANT_EXEMPLO
 VRFs puladas     : 0
 Tenants deletados: 1
-  🗑️  HUAWEI
+  🗑️  TENANT_EXEMPLO
 Tenants pulados  : 0
 Falhas           : 0
 ======================================================================

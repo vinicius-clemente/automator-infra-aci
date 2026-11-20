@@ -59,8 +59,8 @@ As colunas são:
 Exemplo (`statics_ports.txt`):
 
 ```
-HUAWEI,AP_DADOS,EPG_CLIENTES,topology/pod-1/paths-101/pathep-[eth1/24],vlan-100
-HUAWEI,AP_DADOS,EPG_SERVIDORES,topology/pod-1/paths-101/pathep-[eth1/25],vlan-200
+TENANT_EXEMPLO,AP_DADOS,EPG_CLIENTES,topology/pod-1/paths-101/pathep-[eth1/24],vlan-100
+TENANT_EXEMPLO,AP_DADOS,EPG_SERVIDORES,topology/pod-1/paths-101/pathep-[eth1/25],vlan-200
 OUTRO-TENANT,AP_GERENCIA,EPG_GER,topology/pod-1/paths-102/pathep-[eth1/30],any
 TERCEIRO,AP_DADOS,EPG_WEB,topology/pod-2/paths-101/pathep-[eth1/10],vlan-300
 ```
@@ -81,8 +81,8 @@ tenant,app_profile,epg,tdn
 Exemplo (`delete-statics-ports.txt`):
 
 ```
-HUAWEI,AP_DADOS,EPG_CLIENTES,topology/pod-1/paths-101/pathep-[eth1/24]
-HUAWEI,AP_DADOS,EPG_SERVIDORES,topology/pod-1/paths-101/pathep-[eth1/25]
+TENANT_EXEMPLO,AP_DADOS,EPG_CLIENTES,topology/pod-1/paths-101/pathep-[eth1/24]
+TENANT_EXEMPLO,AP_DADOS,EPG_SERVIDORES,topology/pod-1/paths-101/pathep-[eth1/25]
 OUTRO-TENANT,AP_GERENCIA,EPG_GER,topology/pod-1/paths-102/pathep-[eth1/30]
 ```
 
@@ -114,7 +114,7 @@ Os scripts aceitam tanto argumentos na linha de comando quanto arquivo de entrad
 ### 3.1 Associar uma porta estática (modo simples)
 
 ```bash
-python3 epg/create-static-port-to-epg-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/paths-101/pathep-[eth1/24]" --encap vlan-100 -v
+python3 epg/create-static-port-to-epg-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/paths-101/pathep-[eth1/24]" --encap vlan-100 -v
 ```
 
 Parâmetros:
@@ -147,7 +147,7 @@ python3 epg/create-statics-ports-to-epgs-prod.py -v --log-file associar.log
 Quando todas as portas são do mesmo tenant e mesmo AP:
 
 ```bash
-python3 epg/create-statics-ports-to-epgs-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1 --epg EPG2 --tdn "topology/pod-1/paths-101/pathep-[eth1/24]" --tdn "topology/pod-1/paths-101/pathep-[eth1/25]" --encap vlan-100 --encap vlan-200 -v
+python3 epg/create-statics-ports-to-epgs-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG1 --epg EPG2 --tdn "topology/pod-1/paths-101/pathep-[eth1/24]" --tdn "topology/pod-1/paths-101/pathep-[eth1/25]" --encap vlan-100 --encap vlan-200 -v
 ```
 
 **Regras:**
@@ -159,7 +159,7 @@ python3 epg/create-statics-ports-to-epgs-prod.py --tenant HUAWEI --ap AP_DADOS -
 ### 3.4 Desassociar uma porta estática (modo simples)
 
 ```bash
-python3 epg/delete-static-port-from-epg-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/paths-101/pathep-[eth1/24]" -v
+python3 epg/delete-static-port-from-epg-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/paths-101/pathep-[eth1/24]" -v
 ```
 
 ---
@@ -181,7 +181,7 @@ python3 epg/delete-statics-ports-from-epgs-prod.py -v --log-file desassociar.log
 ### 3.6 Desassociar várias portas via linha de comando (modo simples)
 
 ```bash
-python3 epg/delete-statics-ports-from-epgs-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1 --epg EPG2 --tdn "topology/pod-1/paths-101/pathep-[eth1/24]" --tdn "topology/pod-1/paths-101/pathep-[eth1/25]" -v
+python3 epg/delete-statics-ports-from-epgs-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG1 --epg EPG2 --tdn "topology/pod-1/paths-101/pathep-[eth1/24]" --tdn "topology/pod-1/paths-101/pathep-[eth1/25]" -v
 ```
 
 ---
@@ -191,7 +191,7 @@ python3 epg/delete-statics-ports-from-epgs-prod.py --tenant HUAWEI --ap AP_DADOS
 ### Cenário A: Associar uma porta estática única
 
 ```bash
-python3 epg/create-static-port-to-epg-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/paths-101/pathep-[eth1/24]" --encap vlan-100 -v
+python3 epg/create-static-port-to-epg-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/paths-101/pathep-[eth1/24]" --encap vlan-100 -v
 ```
 
 ### Cenário B: Associar várias portas com VLANs diferentes
@@ -240,16 +240,16 @@ APIC   : https://172.30.104.5
 Usuário: 80689851
 Qtd portas: 3
 ----------------------------------------------------------------------
-🔗 Associando porta 'topology/pod-1/paths-101/pathep-[eth1/24]' (encap 'vlan-100') ao EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES'... Status: 200
-✅ Porta 'topology/pod-1/paths-101/pathep-[eth1/24]' associada ao EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' com sucesso.
-🔗 Associando porta 'topology/pod-1/paths-101/pathep-[eth1/25]' (encap 'vlan-200') ao EPG 'HUAWEI/AP_DADOS/EPG_SERVIDORES'... Status: 200
-✅ Porta 'topology/pod-1/paths-101/pathep-[eth1/25]' associada ao EPG 'HUAWEI/AP_DADOS/EPG_SERVIDORES' com sucesso.
+🔗 Associando porta 'topology/pod-1/paths-101/pathep-[eth1/24]' (encap 'vlan-100') ao EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES'... Status: 200
+✅ Porta 'topology/pod-1/paths-101/pathep-[eth1/24]' associada ao EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' com sucesso.
+🔗 Associando porta 'topology/pod-1/paths-101/pathep-[eth1/25]' (encap 'vlan-200') ao EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES'... Status: 200
+✅ Porta 'topology/pod-1/paths-101/pathep-[eth1/25]' associada ao EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES' com sucesso.
 ----------------------------------------------------------------------
 RESUMO
 ----------------------------------------------------------------------
 Portas associadas : 2
-  ✅ HUAWEI/AP_DADOS/EPG_CLIENTES <- topology/pod-1/paths-101/pathep-[eth1/24] (vlan-100)
-  ✅ HUAWEI/AP_DADOS/EPG_SERVIDORES <- topology/pod-1/paths-101/pathep-[eth1/25] (vlan-200)
+  ✅ TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES <- topology/pod-1/paths-101/pathep-[eth1/24] (vlan-100)
+  ✅ TENANT_EXEMPLO/AP_DADOS/EPG_SERVIDORES <- topology/pod-1/paths-101/pathep-[eth1/25] (vlan-200)
 Falhas            : 0
 ======================================================================
 ```
@@ -264,13 +264,13 @@ APIC   : https://172.30.104.5
 Usuário: 80689851
 Qtd itens: 2
 ----------------------------------------------------------------------
-🔗 Desassociando porta 'topology/pod-1/paths-101/pathep-[eth1/24]' do EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES'... Status: 200
-✅ Porta 'topology/pod-1/paths-101/pathep-[eth1/24]' desassociada do EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' com sucesso.
+🔗 Desassociando porta 'topology/pod-1/paths-101/pathep-[eth1/24]' do EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES'... Status: 200
+✅ Porta 'topology/pod-1/paths-101/pathep-[eth1/24]' desassociada do EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' com sucesso.
 ----------------------------------------------------------------------
 RESUMO
 ----------------------------------------------------------------------
 Portas desassociadas : 1
-  🗑️  HUAWEI/AP_DADOS/EPG_CLIENTES <- topology/pod-1/paths-101/pathep-[eth1/24]
+  🗑️  TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES <- topology/pod-1/paths-101/pathep-[eth1/24]
 Falhas               : 0
 ======================================================================
 ```

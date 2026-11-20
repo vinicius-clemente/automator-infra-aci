@@ -73,8 +73,8 @@ tenant,app_profile,epg,tdn,encap
 Exemplo (`statics_ports_vpc.txt`):
 
 ```
-HUAWEI,AP_DADOS,EPG_CLIENTES,topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS],vlan-100
-HUAWEI,AP_DADOS,EPG_SERVIDORES,topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS],vlan-200
+TENANT_EXEMPLO,AP_DADOS,EPG_CLIENTES,topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS],vlan-100
+TENANT_EXEMPLO,AP_DADOS,EPG_SERVIDORES,topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS],vlan-200
 OUTRO-TENANT,AP_GERENCIA,EPG_GER,topology/pod-1/protpaths-101-102/pathep-[VPC_GER],any
 TERCEIRO,AP_DADOS,EPG_WEB,topology/pod-2/protpaths-105-106/pathep-[VPC_WEB],vlan-300
 ```
@@ -95,8 +95,8 @@ tenant,app_profile,epg,tdn
 Exemplo (`delete-statics-ports-vpc.txt`):
 
 ```
-HUAWEI,AP_DADOS,EPG_CLIENTES,topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]
-HUAWEI,AP_DADOS,EPG_SERVIDORES,topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]
+TENANT_EXEMPLO,AP_DADOS,EPG_CLIENTES,topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]
+TENANT_EXEMPLO,AP_DADOS,EPG_SERVIDORES,topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]
 OUTRO-TENANT,AP_GERENCIA,EPG_GER,topology/pod-1/protpaths-101-102/pathep-[VPC_GER]
 ```
 
@@ -126,7 +126,7 @@ Regras:
 ### 4.1 Associar uma porta estática VPC (modo simples)
 
 ```bash
-python3 epg/create-static-port-vpc-to-epg-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" --encap vlan-100 -v
+python3 epg/create-static-port-vpc-to-epg-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" --encap vlan-100 -v
 ```
 
 Parâmetros:
@@ -159,7 +159,7 @@ python3 epg/create-statics-ports-vpc-to-epgs-prod.py -v --log-file associar_vpc.
 Quando todas as portas são do mesmo tenant e mesmo AP:
 
 ```bash
-python3 epg/create-statics-ports-vpc-to-epgs-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1 --epg EPG2 --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" --encap vlan-100 --encap vlan-200 -v
+python3 epg/create-statics-ports-vpc-to-epgs-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG1 --epg EPG2 --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" --encap vlan-100 --encap vlan-200 -v
 ```
 
 **Regras:**
@@ -171,7 +171,7 @@ python3 epg/create-statics-ports-vpc-to-epgs-prod.py --tenant HUAWEI --ap AP_DAD
 ### 4.4 Desassociar uma porta estática VPC (modo simples)
 
 ```bash
-python3 epg/delete-static-port-vpc-from-epg-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" -v
+python3 epg/delete-static-port-vpc-from-epg-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" -v
 ```
 
 ---
@@ -193,7 +193,7 @@ python3 epg/delete-statics-ports-vpc-from-epgs-prod.py -v --log-file desassociar
 ### 4.6 Desassociar várias portas VPC via linha de comando (modo simples)
 
 ```bash
-python3 epg/delete-statics-ports-vpc-from-epgs-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG1 --epg EPG2 --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" -v
+python3 epg/delete-statics-ports-vpc-from-epgs-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG1 --epg EPG2 --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" -v
 ```
 
 ---
@@ -203,7 +203,7 @@ python3 epg/delete-statics-ports-vpc-from-epgs-prod.py --tenant HUAWEI --ap AP_D
 ### Cenário A: Associar uma porta VPC única
 
 ```bash
-python3 epg/create-static-port-vpc-to-epg-prod.py --tenant HUAWEI --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" --encap vlan-100 -v
+python3 epg/create-static-port-vpc-to-epg-prod.py --tenant TENANT_EXEMPLO --ap AP_DADOS --epg EPG_CLIENTES --tdn "topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]" --encap vlan-100 -v
 ```
 
 ### Cenário B: Associar várias portas VPC com VLANs diferentes
@@ -243,13 +243,13 @@ APIC   : https://172.30.104.5
 Usuário: 80689851
 Qtd portas: 2
 ----------------------------------------------------------------------
-🔗 Associando porta VPC 'topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]' (encap 'vlan-100') ao EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES'... Status: 200
-✅ Porta VPC 'topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]' associada ao EPG 'HUAWEI/AP_DADOS/EPG_CLIENTES' com sucesso.
+🔗 Associando porta VPC 'topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]' (encap 'vlan-100') ao EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES'... Status: 200
+✅ Porta VPC 'topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS]' associada ao EPG 'TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES' com sucesso.
 ----------------------------------------------------------------------
 RESUMO
 ----------------------------------------------------------------------
 Portas VPC associadas : 2
-  ✅ HUAWEI/AP_DADOS/EPG_CLIENTES <- topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS] (vlan-100)
+  ✅ TENANT_EXEMPLO/AP_DADOS/EPG_CLIENTES <- topology/pod-1/protpaths-101-102/pathep-[VPC_DADOS] (vlan-100)
 Falhas            : 0
 ======================================================================
 ```
