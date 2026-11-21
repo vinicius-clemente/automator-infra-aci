@@ -1,0 +1,116 @@
+import argparse
+import csv
+import json
+import os
+import sys
+import getpass
+import requests
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+DEFAULT_APIC_IP = "172.30.104.5"
+
+def load_vars_from_csv(csv_file):
+    if not os.path.exists(csv_file):
+        print(f"❌ Arquivo CSV não encontrado: {csv_file}")
+        sys.exit(1)
+    with open(csv_file, newline="", encoding="utf-8") as f:
+        lines = [line for line in f if not line.lstrip().startswith("#")]
+        reader = csv.DictReader(lines)
+        rows = list(reader)
+        if len(rows) != 1:
+            raise ValueError("O CSV deve conter exatamente 1 linha de dados válida")
+        r = {k: (v or "").strip() for k, v in rows[0].items()}
+        return {
+            "DOM_NAME": r.get("DOM_NAME")
+        }
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Criação simples de L3out Domain Profile no Cisco ACI (via CLI ou CSV)")
+    parser.add_argument("--arquivo", help="Caminho para arquivo CSV com variáveis")
+    parser.add_argument("--dom-name", help="Nome do L3out Domain Profile (ex: JASONX1-L3OUT-DOM)")
+    parser.add_argument("--apic", default=DEFAULT_APIC_IP, help="IP do APIC")
+    parser.add_argument("--user", default=None, help="Usuário do APIC")
+    parser.add_argument("--pass", dest="password", default=None, help="Senha do APIC")
+    return parser.parse_args()
+
+def get_config(args):
+    if args.arquivo:
+        print(f"📄 Lendo configurações do arquivo: {args.arquivo}")
+        cfg = load_vars_from_csv(args.arquivo)
+    else:
+        if not args.dom_name:
+            print("❌ Erro: O argumento --dom-name é obrigatório se não usar --arquivo.")
+            sys.exit(1)
+        cfg = {
+            "DOM_NAME": args.dom_name
+        }
+
+    user = args.user
+    password = args.password
+    if not user:
+        user = input("Usuário APIC: ").strip()
+        while not user:
+            user = input("Usuário APIC (obrigatório): ").strip()
+    if not password:
+        password = getpass.getpass("Senha APIC: ")
+
+    cfg["APIC_IP"] = args.apic
+    cfg["USERNAME"] = user
+    cfg["PASSWORD"] = password
+    return cfg
+
+def login(apic_ip, username, password):
+    login_url = f"https://{apic_ip}/api/aaaLogin.json"
+    payload = {"aaaUser": {"attributes": {"name": username, "pwd": password}}}
+    print(f"🔑 Autenticando em https://{apic_ip}...")
+    try:
+        r = requests.post(login_url, json=payload, verify=False, timeout=10)
+        r.raise_for_status()
+        print("✅ Autenticação realizada com sucesso.")
+        return r.cookies
+    except requests.RequestException as e:
+        print(f"❌ Erro na autenticação: {e}")
+        sys.exit(1)
+
+def criar_l3out_dom(cfg, cookies):
+    apic_ip = cfg["APIC_IP"]
+    dom_name = cfg["DOM_NAME"]
+
+    headers = {"Content-Type": "application/json", "Accept": "application/json"}
+    url = f"https://{apic_ip}/api/node/mo/uni/l3dom-{dom_name}.json"
+
+    payload = {
+        "l3extDomP": {
+            "attributes": {
+                "dn": f"uni/l3dom-{dom_name}",
+                "name": dom_name,
+                "rn": f"l3dom-{dom_name}",
+                "status": "created"
+            },
+            "children": []
+        }
+    }
+
+    print(f"🚀 Criando L3out Domain Profile '{dom_name}'...")
+    try:
+        r = requests.post(url, json=payload, headers=headers, cookies=cookies, verify=False, timeout=15)
+        r.raise_for_status()
+        print(f"✅ L3out Domain Profile '{dom_name}' criado com sucesso!")
+    except requests.exceptions.HTTPError as e:
+        print(f"❌ Erro HTTP ao criar L3out Domain Profile: {e}")
+        try:
+            print(f"Resposta APIC: {json.dumps(r.json(), indent=4)}")
+        except Exception:
+            print(f"Resposta texto: {r.text}")
+        sys.exit(1)
+
+def main():
+    args = parse_args()
+    cfg = get_config(args)
+    cookies = login(cfg["APIC_IP"], cfg["USERNAME"], cfg["PASSWORD"])
+    criar_l3out_dom(cfg, cookies)
+
+if __name__ == "__main__":
+    main()
