@@ -14,7 +14,7 @@ automator-infra-aci/
 ├── bd/           # Criação e configuração de Bridge Domains e Subnets
 ├── epg/          # Gestão de Application Profiles, EPGs, Static Ports (Access/vPC) e limpeza
 ├── l3out/        # Automação de L3Outs e conectividade externa
-├── physical/     # Fabric Access Policies: VLAN Pools, AAEPs e Physical Domains
+├── physical/     # Fabric Access Policies: VLAN Pools, AAEPs, Physical Domains e L3OUT Domains
 └── docs/         # Manuais operacionais detalhados por módulo
 
 🚀 Módulos e FuncionalidadesFabric Access Policies (physical/):
@@ -39,18 +39,19 @@ Automação de conectividade Layer 3 externa.
 📚 Documentação Operacional (docs/)
 Cada fluxo possui um guia técnico detalhado com estrutura de arquivos de entrada, parâmetros e exemplos de execução:
 
-Módulo / Operação				                      Manual
-VLAN Pool (Criação e faixas)			            docs/MANUAL_VLANPOOL.md
-AAEP (Attachable Access Entity Profile)		    docs/MANUAL_AAEP.md
-Physical Domain (Criação e associação)		    docs/MANUAL_DOM.md
-Tenant & VRF					                        docs/MANUAL_TENANT_VRF.md
-Bridge Domain (BD)				                    docs/MANUAL_BD.md
-Endpoint Group (EPG)				                  docs/MANUAL_EPG.md
-Criação Integrada (EPG + Domain)		          docs/MANUAL_CREATE_EPG_DOM.md
-Static Ports (Access / Port-Channel)		      docs/MANUAL_STATIC_PORTS.md
-Static Ports vPC				                      docs/MANUAL_STATIC_PORTS_VPC.md
-L3Out						                              docs/MANUAL_L3OUT.md
-Descomissionamento (Delete EPG / BD)		      docs/MANUAL_DELETE_EPG_BD.md
+Módulo / Operação				                                        Manual
+VLAN Pool (Criação e faixas)			                              docs/MANUAL_VLANPOOL.md
+AAEP (Attachable Access Entity Profile)		                      docs/MANUAL_AAEP.md
+Physical Domain (Criação e associação)		                      docs/MANUAL_DOM.md
+L3OUT Domain                                                    docs/MANUAL_L3-DOM.md
+Tenant & VRF					                                          docs/MANUAL_TENANT_VRF.md
+Bridge Domain (BD)				                                      docs/MANUAL_BD.md
+Endpoint Group (EPG)				                                    docs/MANUAL_EPG.md
+Criação Integrada (EPG + Domain)		                            docs/MANUAL_CREATE_EPG_DOM.md
+Static Ports (Access / Port-Channel)		                        docs/MANUAL_STATIC_PORTS.md
+Static Ports vPC				                                        docs/MANUAL_STATIC_PORTS_VPC.md
+L3Out						                                                docs/MANUAL_L3OUT.md
+Descomissionamento (Delete EPG / BD)		                        docs/MANUAL_DELETE_EPG_BD.md
 
 ⚙️ Pré-requisitos e InstalaçãoPython 3.8+
 Acesso HTTPS (porta 443) ao Cisco APIC com usuário habilitado para chamadas REST API.
